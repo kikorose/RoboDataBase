@@ -9,50 +9,127 @@ public class MainController {
 
 
         @Autowired
-        private PotObjectRepository potObjectRepository;
+        Person  person;
+        @Autowired
+        Education  education;
+        @Autowired
+        Experience  experience;
+        @Autowired
+        Skills  skills;
 
-        @GetMapping("/")
+
+        @GetMapping("/index")
         public String welcomePage()
         {
             return "welcome";
         }
 
-        @GetMapping("/add")
-        public String loadAddPage(Model model)
+        @GetMapping("/person")
+        public String person(Model model)
         {
-            model.addAttribute("potObject", new PotObject());
-            return "add";
+            model.addAttribute("person", new Person());
+            return "person";
         }
 
-        @PostMapping("/add")
+        @GetMapping("/education")
+        public String education(Model model)
+
+       {
+           model.addAttribute("education", new Education());
+           return "education";
+       }
+
+        @GetMapping("/experience")
+        public String experience(Model model)
+
+        {
+           model.addAttribute("experience", new Experience());
+           return "experience";
+        }
+
+        @GetMapping("/skills")
+        public String skills(Model model)
+
+       {
+        model.addAttribute("skills", new Skills());
+        return "skills";
+       }
+
+
+        @PostMapping("/index")
         public String processAddPage(@Valid PotObject potObject, BindingResult result) {
             if (result.hasErrors()) {
-                return "add";
+                return "index";
             }
-            return "addconfirm";
+            return "index";
         }
 
-        @GetMapping("/listAll")
+        @GetMapping("/person")
+        public String person(Model model)
+        {
+            Iterable<Person> personList = personRepository.findAll();
+            model.addAttribute("PersonList", personListList);
+            return "personList";
+        }
+
+        @PostMapping("/personlist")
+        public String loadListAllPage(@ModelAttribute PersonList personList)
+        {
+
+            return "personlist";
+        }
+
+
+        @GetMapping("/education")
         public String loadListAllPage(Model model)
+
+       {
+        Iterable<Education> educationList = educationRepository.findAll();
+        model.addAttribute("EducationList", educationList);
+        return "educationlist";
+
+       }
+
+       @PostMapping("/education")
+       public String loadListAllPage(@ModelAttribute EducationList educationList)
+
+       {
+        return "educationlist";
+       }
+
+
+       @GetMapping("/experiencelist")
+       public String experienceList(Model model)
         {
-            Iterable<PotObject> potObjectList = potObjectRepository.findAll();
-            model.addAttribute("listOfPotObjects", potObjectList);
-            return "listAll";
+        Iterable<Experience> experienceList = experienceRepository.findAll();
+        model.addAttribute("ExperienceList", experienceList);
+        return "experiencelist";
         }
 
-        @PostMapping("/listAll")
-        public String loadListAllPage(@ModelAttribute PotObject potObject)
+       @PostMapping("/experience")
+       public String loadListAllPage(@ModelAttribute ExperienceList experiencelist)
         {
-            return "confirmpotObject";
+        return "experienceList";
         }
 
-        @GetMapping("/searchFood")
-        public String loadSearchFoodPage()
-        {
-            return "searchFood";
-        }
-
-
+    @GetMapping("/skillslist")
+    public String skillsList(Model model)
+    {
+        Iterable<Skills> SkillsList = SkillsRepository.findAll();
+        model.addAttribute("SkillsList", skillList);
+        return "skillsList";
     }
 
-}
+    @PostMapping("/skillslist")
+    public String loadListAllPage(@ModelAttribute SkillsList skillsList)
+    {
+        return "skillsList";
+    }
+
+
+
+        }
+
+
+
+        }
