@@ -57,7 +57,8 @@ public class MainController {
 
 
         @PostMapping("/index")
-        public String processAddPage(@Valid PotObject potObject, BindingResult result) {
+        public String index(@Valid @ModelAttribute, BindingResult bindingResult)
+        {
             if (result.hasErrors()) {
                 return "index";
             }
@@ -67,36 +68,46 @@ public class MainController {
         @GetMapping("/person")
         public String person(Model model)
         {
-            Iterable<Person> personList = personRepository.findAll();
+            Iterable<Person> personList = personRepository.save();
             model.addAttribute("PersonList", personListList);
             return "personList";
         }
 
         @PostMapping("/personlist")
-        public String loadListAllPage(@ModelAttribute PersonList personList)
+        public String personListList(Model model)
+         model.addAttriburte(@Valid @ModelAttribute BindingResults bindingResults, Model model)
         {
+            if (result.hasErrors()) {
+                return "personList";
+            }
 
             return "personlist";
         }
 
 
-        @GetMapping("/education")
-        public String loadListAllPage(Model model)
+        @GetMapping("/educationList")
+        public String educationList(Model model)
 
        {
-        Iterable<Education> educationList = educationRepository.findAll();
-        model.addAttribute("EducationList", educationList);
+        Iterable<Education> educationList = educationRepository.save();
+        model.addAttribute(@valid @ModelAttributer "EducationList", educationList BindingResult bindingResult);
         return "educationlist";
 
        }
 
        @PostMapping("/education")
-       public String loadListAllPage(@ModelAttribute EducationList educationList)
+       public String educationList(Model model)
+        model.addAttribute(@Valid @ModelAttribute EducationList educationList BindingResult bindingResult)
 
-       {
-        return "educationlist";
-       }
+        {
 
+        }
+        if (bindingResult.hasErrors()) {
+            return "educationlist";
+        }
+        return "educationList";
+
+        }
 
        @GetMapping("/experiencelist")
        public String experienceList(Model model)
@@ -106,24 +117,35 @@ public class MainController {
         return "experiencelist";
         }
 
-       @PostMapping("/experience")
-       public String loadListAllPage(@ModelAttribute ExperienceList experiencelist)
+       @PostMapping("/experiencelist")
+       public String experienceList(Model model)
+        model.addAttributes(@Valid @ModelAttribute ExperienceList experiencelist BindingResult bindingResult)
         {
-        return "experienceList";
+            if(bindingResult.hasErrors()) {
+            return "experienceList";
         }
 
     @GetMapping("/skillslist")
     public String skillsList(Model model)
     {
-        Iterable<Skills> SkillsList = SkillsRepository.findAll();
+        Iterable<Skills> SkillsList = SkillsRepository.save();
         model.addAttribute("SkillsList", skillList);
         return "skillsList";
     }
 
     @PostMapping("/skillslist")
-    public String loadListAllPage(@ModelAttribute SkillsList skillsList)
+    public String skillList(@valid @ModelAttribute ("SkillsList") SkillsList,
+                BindingResult bindingResult, Model model) {
+            System.out.println("");
     {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("educationList", educationListRepo.save());
         return "skillsList";
+    }
+
+
+
+
     }
 
 

@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html  xmlns:th="www.thymeleaf.org">
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>Experience</title>
+    <meta charse t="UTF-8">
+    <title>Exerience</title>
 </head>
 <body>
-   <h1>Experience</h1>
+<h1>Experience</h1>
+<form action="#" th:action="@{/person}" th:object="${person}" method="post">
+    Skilled: <input type="text" th:field="*{skilled}"/>
+    <span  class="text-warning" th:if="${#fields.hasErrors('skilled')}" th:errors="*{skilled}"></span><br/>
+    Profient: <input typ="text" th:field="*{profient}"/>
+    <span class="text-warning" th:if="${#fields.hasErrors('profient')}" th:errors="*{profient}"></span><br/>
+    Familiar: <textarea row="3"  th:field="*{familiar}"/>
+    <span class="text-warning" th:if="${#fields.hasErrors('familiar')}" th:errors="*{familiar}"></span><br/>
+    <input type="submit" value="Submit"/>
+</form>
 </body>
 </html>

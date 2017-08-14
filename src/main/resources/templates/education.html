@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html  xmlns:th="www.thymeleaf.org">
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charse t="UTF-8">
     <title>Education</title>
 </head>
 <body>
-  <h1>Education</h1>
+<h1>Education</h1>
+<form action="#" th:action="@{/person}" th:object="${person}" method="post">
+    Id: <input type="number" th:field="*{id}"/>
+    <span class="text-warning" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span><br/>
+    School: <input type="text" th:field="*{school}"/>
+    <span  class="text-warning" th:if="${#fields.hasErrors('school')}" th:errors="*{school}"></span><br/>
+    Degree: <input typ="text" th:field="*{degree}"/>
+    <span class="text-warning" th:if="${#fields.hasErrors('degree')}" th:errors="*{degree}"></span><br/>
+    GraduationDate: <textarea row="3"  th:field="*{graduationDate}"/>
+    <input type="submit" value="Submit"/>
+</form>
 </body>
 </html>
